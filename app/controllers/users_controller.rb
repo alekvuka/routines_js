@@ -11,6 +11,10 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def get_user
+    render json: current_user
+  end
+
   def routines
     @routines = Routine.order_my_routines(current_user)
     render 'routines/index'
