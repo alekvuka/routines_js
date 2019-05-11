@@ -12,7 +12,8 @@ class UsersController < ApplicationController
   end
 
   def get_user
-    render json: current_user
+    @user = current_user
+    render json: @user
   end
 
   def routines
