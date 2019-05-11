@@ -11,6 +11,11 @@ class UsersController < ApplicationController
     render json: @routines
   end
 
+  def upcoming_routines
+    @routines = current_user.upcoming_routine
+    render json: @routines
+  end
+
 
 
 

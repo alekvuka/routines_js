@@ -20,6 +20,16 @@ function appendUserInfo(result){
   )
 }
 
+
+function appendUpcomingRoutines(result){
+  debugger
+}
+
+
+
+
+
+
 function appendCurrentRoutines(result) {
 
   if(result.length === 0){
@@ -48,7 +58,6 @@ function userInfo() {
    })
 }
 
-
 function currentRoutines() {
   let id = $('#user_id')[0].value
   $.getJSON("/get_current_routines/" + id, function(result){
@@ -56,13 +65,16 @@ function currentRoutines() {
   })
 }
 
-
-
-
+function upcomingRoutines() {
+  let id = $('#user_id')[0].value
+  $.getJSON("/get_upcoming_routines/" + id, function(result){
+    appendUpcomingRoutines(result)
+  })
+}
 
 $(document).ready(function() {
   userInfo()
   currentRoutines()
-  //upcomingRoutines()
+  upcomingRoutines()
   //attachListeners()
 });
