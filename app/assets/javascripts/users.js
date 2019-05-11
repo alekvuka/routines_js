@@ -21,6 +21,11 @@ function appendUserInfo(result){
   )
 }
 
+function appendCurrentRoutines(result) {
+  debugger
+
+}
+
 
 function userInfo() {
    let id = $('#user_id')[0].value
@@ -32,13 +37,9 @@ function userInfo() {
 
 function currentRoutines() {
   let id = $('#user_id')[0].value
-  //debugger
   $.getJSON("/get_current_routines/" + id, function(result){
-    //appendUserInfo(result)
-    debugger
+    appendCurrentRoutines(result)
   })
-
-
 
 
 }
