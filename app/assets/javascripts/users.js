@@ -16,13 +16,22 @@ function appendUserInfo(result){
      <br>
      <br>
      You can <a href="" id='see_all_routines'>see all of your routines</a>
-     or <a href="" id='add a routine'> add a new routine</a>
+     or <a href="" id='create_a_routine'> create a new routine</a>
     `
   )
 }
 
 function appendCurrentRoutines(result) {
-  debugger
+
+  if(result.length === 0){
+    $("#current_routine").append(
+      `You do not have a routine that is applicable at the current time <br>
+       <a href="" id='create_a_routine'> create one!</a>
+      `
+    )
+  }else{
+    
+  }
 
 }
 
