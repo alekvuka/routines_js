@@ -26,13 +26,15 @@ function appendCurrentRoutines(result) {
   if(result.length === 0){
     $("#current_routine").append(
       `You do not have a routine that is applicable at the current time <br>
-       <a href="" id='create_a_routine'> create one!</a>
-      `
+       <a href="" id='create_a_routine'> create one!</a> `
     )
   }else{
-    
+    debugger
+    result
+    for(i=0; i<=result.lenght; i++){
+      result[i]
+    }
   }
-
 }
 
 
@@ -49,8 +51,6 @@ function currentRoutines() {
   $.getJSON("/get_current_routines/" + id, function(result){
     appendCurrentRoutines(result)
   })
-
-
 }
 
 
