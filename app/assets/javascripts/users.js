@@ -4,15 +4,14 @@
 
 const maybePluralize = (count, noun, suffix = 's') =>`${count} ${noun}${count !== 1 ? suffix : ''}`;
 
+
 function appendUserInfo(result){
   let numberOfRoutines = result.routines.length
   let name = result.name
-  let numberOfTasks = 0
 
   $('#user_info').append(
     `<h1>Hello, ${name}! </h1>
-     You have ${maybePluralize(numberOfRoutines, 'routine')}
-     consisting of ${maybePluralize(numberOfTasks, 'task')}.
+     You have a total of ${maybePluralize(numberOfRoutines, 'routine')} today.
      <br>
      <br>
      You can <a href="" id='see_all_routines'>see all of your routines</a>
@@ -31,18 +30,12 @@ function appendCurrentRoutines(result) {
   }else{
 
     for(i=0; i<=result.length; i++){
-
        $("#current_routine").append(`${result[i].name} (${result[i].start_time} - ${result[i].end_time}) <br>`)
-       var tasks = document.createElement("INPUT")
-       tasks.setAttribute("type", "checkbox")
 
-       //debugger
        for(j=0; j<result[i].tasks.length; j++) {
-         debugger
-         tasks.innerText = `${result[i].tasks[j].name}`
-         $("#current_routine").append(tasks)
+         $("#current_routine").append(`<input type="checkbox" name="task" value="task">${result[i].tasks[j].name}<br>`)
        }
-
+       $("#current_routine").append("<br>")
     }
   }
 }
