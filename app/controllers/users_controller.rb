@@ -1,20 +1,36 @@
 class UsersController < ApplicationController
 
 
+  def get_user
+    @user = current_user
+    render json: @user
+  end
+
+  def current_routines
+    @routines = current_user.current_routine
+    render json: @routines
+  end
+
+
+
+
+
+
+
+
+
   def add_routine
     current_user.routines << Routine.find(params[:user_id])
     current_user.save
     redirect_to user_path(current_user)
   end
 
+
   def show
     @user = current_user
   end
 
-  def get_user
-    @user = current_user
-    render json: @user
-  end
+
 
   def routines
     @routines = Routine.order_my_routines(current_user)

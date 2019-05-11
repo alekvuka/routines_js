@@ -34,7 +34,8 @@ function currentRoutines() {
   let id = $('#user_id')[0].value
   //debugger
   $.getJSON("/get_current_routines/" + id, function(result){
-    appendUserInfo(result)
+    //appendUserInfo(result)
+    debugger
   })
 
 
