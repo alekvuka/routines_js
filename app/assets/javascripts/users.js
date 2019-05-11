@@ -29,10 +29,20 @@ function appendCurrentRoutines(result) {
        <a href="" id='create_a_routine'> create one!</a> `
     )
   }else{
-    debugger
-    result
-    for(i=0; i<=result.lenght; i++){
-      result[i]
+
+    for(i=0; i<=result.length; i++){
+
+       $("#current_routine").append(`${result[i].name} (${result[i].start_time} - ${result[i].end_time}) <br>`)
+       var tasks = document.createElement("INPUT")
+       tasks.setAttribute("type", "checkbox")
+
+       //debugger
+       for(j=0; j<result[i].tasks.length; j++) {
+         debugger
+         tasks.innerText = `${result[i].tasks[j].name}`
+         $("#current_routine").append(tasks)
+       }
+
     }
   }
 }
