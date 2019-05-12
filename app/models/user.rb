@@ -30,11 +30,14 @@ class User < ApplicationRecord
   end
 
   def upcoming_routine
+   routines = Array.new
    self.routines.map do |routine|
      if routine.end_hour >= routine.current_hour && !self.current_routine.include?(routine)
-       return routine
+       #return routine
+       routines << routine
      end
     end
+    routines
   end
 
 end

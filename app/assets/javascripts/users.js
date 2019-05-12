@@ -22,7 +22,16 @@ function appendUserInfo(result){
 
 
 function appendUpcomingRoutines(result){
-  debugger
+  //debugger
+  for(i=0; i<result.length; i++){
+     $("#upcoming_routine").append(`${result[i].name} (${result[i].start_time} - ${result[i].end_time}) <br>`)
+
+     for(j=0; j<result[i].tasks.length; j++) {
+       $("#upcoming_routine").append(`<input type="checkbox" name="task" value="task">${result[i].tasks[j].name}<br>`)
+     }
+     $("#upcoming_routine").append("<br>")
+
+  }
 }
 
 
@@ -39,7 +48,7 @@ function appendCurrentRoutines(result) {
     )
   }else{
 
-    for(i=0; i<=result.length; i++){
+    for(i=0; i<result.length; i++){
        $("#current_routine").append(`${result[i].name} (${result[i].start_time} - ${result[i].end_time}) <br>`)
 
        for(j=0; j<result[i].tasks.length; j++) {
