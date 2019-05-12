@@ -18,11 +18,40 @@ function appendUserInfo(result){
      or <a href="" id='create_a_routine'> create a new routine</a>
     `
   )
+
+  $('#see_all_routines')[0].addEventListener('click', seeAllRoutines)
+  $('#create_a_routine')[0].addEventListener('click', createARoutine)
+
+
+}
+
+function getRoutines(){
+debugger
+
+
 }
 
 
+
+
+function seeAllRoutines(){
+    getRoutines()
+
+}
+
+function createARoutine(){
+    //e.preventDefault();
+    debugger
+}
+
+
+
+
+
+
+
 function appendUpcomingRoutines(result){
-  //debugger
+
   for(i=0; i<result.length; i++){
      $("#upcoming_routine").append(`${result[i].name} (${result[i].start_time} - ${result[i].end_time}) <br>`)
 
@@ -33,11 +62,6 @@ function appendUpcomingRoutines(result){
 
   }
 }
-
-
-
-
-
 
 function appendCurrentRoutines(result) {
 
@@ -85,5 +109,4 @@ $(document).ready(function() {
   userInfo()
   currentRoutines()
   upcomingRoutines()
-  //attachListeners()
 });

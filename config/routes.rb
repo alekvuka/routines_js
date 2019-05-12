@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/get_user/:id', to: 'users#get_user'
   get '/get_current_routines/:id', to: 'users#current_routines'
   get '/get_upcoming_routines/:id', to: 'users#upcoming_routines'
+  get '/get_routines/:id', to: 'users#get_routines'
 
   resources :tasks, only: [:index, :show]
   resources :routines, only: [:index, :show]

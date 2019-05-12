@@ -16,6 +16,11 @@ class UsersController < ApplicationController
     render json: @routines
   end
 
+  def get_routines
+    @routines = Routine.order_my_routines(current_user)
+    render json: @routines
+  end
+
 
 
 
@@ -34,6 +39,9 @@ class UsersController < ApplicationController
   def show
     @user = current_user
   end
+
+
+
 
 
 
