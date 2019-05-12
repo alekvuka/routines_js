@@ -1,7 +1,4 @@
 
-
-//function to get the number or routines a user has
-
 const maybePluralize = (count, noun, suffix = 's') =>`${count} ${noun}${count !== 1 ? suffix : ''}`;
 
 
@@ -19,38 +16,27 @@ function appendUserInfo(result){
     `
   )
 
-  $('#see_all_routines')[0].addEventListener('click', seeAllRoutines)
+  $('#see_all_routines')[0].addEventListener('click', function(e){
+       e.preventDefault();
+       getAllRoutines()
+  })
   $('#create_a_routine')[0].addEventListener('click', createARoutine)
 
 
 }
 
-function getRoutines(){
-debugger
-
-
+function clearPage() {
+  $('#user_info').empty()
+  $("#current_routine").empty()
+  $("#upcoming_routine").empty()
+  $('#routines_page').empty()
 }
-
-
-
-
-function seeAllRoutines(){
-    getRoutines()
-
-}
-
-function createARoutine(){
-    //e.preventDefault();
-    debugger
-}
-
-
-
-
 
 
 
 function appendUpcomingRoutines(result){
+
+  $("#upcoming_routine").append("<h3>_____________________________UPCOMING_ROUTINE_______________________________</h3>")
 
   for(i=0; i<result.length; i++){
      $("#upcoming_routine").append(`${result[i].name} (${result[i].start_time} - ${result[i].end_time}) <br>`)
@@ -64,6 +50,8 @@ function appendUpcomingRoutines(result){
 }
 
 function appendCurrentRoutines(result) {
+
+  $("#current_routine").append("<h3>_____________________________CURRENT_ROUTINE_______________________________</h3>")
 
   if(result.length === 0){
     $("#current_routine").append(
