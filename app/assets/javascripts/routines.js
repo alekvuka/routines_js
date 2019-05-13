@@ -1,4 +1,22 @@
 
+
+function backtoMainScreenButton(){
+  var button = document. createElement("button")
+  button.innerHTML = "Back to Main Screen"
+  button.id = 'back_to_main_screen'
+
+  $('#routines_page').append(button)
+  $('#back_to_main_screen')[0].addEventListener('click', function(e){
+       e.preventDefault();
+       clearPage()
+       userInfo()
+       currentRoutines()
+       upcomingRoutines()
+  })
+
+}
+
+
 function createTimeOptions(j){
 
   let times =   ['1:00am', '2:00am', '3:00am', '4:00am', '5:00am','6:00am',
@@ -45,18 +63,8 @@ function showAllRoutines(result){
      $('#routines_page').append("<br>")
 
   }
-  var button = document. createElement("button")
-  button.innerHTML = "Back to Main Screen"
-  button.id = 'back_to_main_screen'
 
-  $('#routines_page').append(button)
-  $('#back_to_main_screen')[0].addEventListener('click', function(e){
-       e.preventDefault();
-       clearPage()
-       userInfo()
-       currentRoutines()
-       upcomingRoutines()
-  })
+  backtoMainScreenButton()
 }
 
 function getAllRoutines(){
@@ -76,17 +84,88 @@ function createRoutine(){
   $('#routines_page').append("Name of your new routine:")
   $('#routines_page').append(x)
   $('#routines_page').append("<br><br>")
-
   $('#routines_page').append("Routine avalable/visible from:")
   $('#routines_page').append(createTimeOptions("start_time"))
   $('#routines_page').append("to:")
   $('#routines_page').append(createTimeOptions("end_time"))
   $('#routines_page').append("<br>")
   $('#routines_page').append("<br>")
-  $('#routines_page').append("Tasks for this Routine: <br>")
-
-  
+  $('#routines_page').append("Tasks for this Routine:")
 
 
 
+  //var br = document.createElement("BR");
+  var x = document.createElement("DIV");
+  x.id = "existing_tasks"
+
+  $.getJSON("/all_tasks",  function(result){
+
+    for(i=0; i<result.length; i++){
+      var br = document.createElement("BR");
+      var l = document.createElement("LABEL");
+      l.innerHTML = result[i].name
+
+      var imp = document.createElement("INPUT");
+      imp.type = 'checkbox'
+      imp.value = result[i].id
+      imp.name = result[i].name
+      l.appendChild(imp)
+      x.appendChild(l)
+      x.appendChild(br)
+    }
+    x.append(document.createElement("BR"))
+  })
+
+  $('#routines_page').append(x)
+
+  $('#routines_page').append("Or create a new task for this routine")
+
+  var xi = document.createElement("DIV");
+  xi.id = "new_tasks"
+  let newTask = 0
+
+  var imp = document.createElement("INPUT");
+  imp.type = 'TEXTFIELD'
+  imp.id = newTask
+  var lab = document.createElement("LABEL");
+  lab.innerText = "Task name:"
+
+  lab.appendChild(imp)
+
+  var but = document.createElement("button");
+  but.innerText = "Another One"
+  but.id = 'moreNewTasks'
+
+  xi.appendChild(lab)
+  xi.append(document.createElement("BR"))
+  xi.appendChild(but)
+  $('#routines_page').append(xi)
+
+  $('#moreNewTasks')[0].addEventListener('click', function(e){
+    var lab = document.createElement("LABEL");
+    lab.innerText = "Task name:"
+    var imp = document.createElement("INPUT");
+    imp.type = 'textfiled'
+    imp.id = newTask
+    lab.appendChild(imp)
+    xi.appendChild(lab)
+    xi.append(document.createElement("BR"))
+    xi.appendChild(but)
+  })
+
+  $('#routines_page').append(document.createElement("BR"))
+
+  backtoMainScreenButton()
+
+  var createButton = document.createElement("button");
+  createButton.innerText = "Create This Routine"
+  createButton.id = 'createRoutine'
+  $('#routines_page').append(createButton)
+  $('#createRoutine')[0].addEventListener('click', function(e){
+      createNewRoutine()
+  })
+}
+
+function createNewRoutine(){
+  debugger
 }
