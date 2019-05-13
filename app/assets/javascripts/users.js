@@ -20,9 +20,10 @@ function appendUserInfo(result){
        e.preventDefault();
        getAllRoutines()
   })
-  $('#create_a_routine')[0].addEventListener('click', createARoutine)
-
-
+  $('#create_a_routine')[0].addEventListener('click', function(e){
+       e.preventDefault();
+       createRoutine()
+  })
 }
 
 function clearPage() {
