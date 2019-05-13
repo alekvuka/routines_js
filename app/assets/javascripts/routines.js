@@ -1,8 +1,24 @@
 
-const times =   ['1:00am', '2:00am', '3:00am', '4:00am', '5:00am','6:00am',
-    '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm',
-    '1:00pm', '2:00pm', '3:00pm', '4:00pm','5:00pm','6:00pm',
-    '7:00pm', '8:00pm', '9:00pm', '10:00pm', '11:00pm', '12:00am' ]
+function createTimeOptions(j){
+
+  let times =   ['1:00am', '2:00am', '3:00am', '4:00am', '5:00am','6:00am',
+      '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm',
+      '1:00pm', '2:00pm', '3:00pm', '4:00pm','5:00pm','6:00pm',
+      '7:00pm', '8:00pm', '9:00pm', '10:00pm', '11:00pm', '12:00am' ]
+
+
+  var sel = document.createElement("SELECT")
+  sel.id = j
+  for(i=0; i<times.length; i++){
+    var opt = document.createElement("OPTION")
+    opt.value = times[i]
+    opt.innerText = times[i]
+    sel.appendChild(opt)
+  }
+
+  return sel
+
+}
 
 function showAllRoutines(result){
   clearPage()
@@ -54,20 +70,22 @@ function createRoutine(){
   clearPage()
 
   $('#routines_page').append("<h1>Create a New Routine!</h1>")
+  var x = document.createElement("INPUT");
+  x.setAttribute("type", "text");
+  x.id = "routine_name"
+  $('#routines_page').append("Name of your new routine:")
+  $('#routines_page').append(x)
+  $('#routines_page').append("<br><br>")
 
-  var sel = document.createElement("SELECT")
-  sel.id = 'start_time'
-  for(i=0; i<times.length; i++){
-    var opt = document.createElement("OPTION")
-    opt.value = times[i]
-    opt.innerText = times[i]
-    sel.appendChild(opt)
-  }
+  $('#routines_page').append("Routine avalable/visible from:")
+  $('#routines_page').append(createTimeOptions("start_time"))
+  $('#routines_page').append("to:")
+  $('#routines_page').append(createTimeOptions("end_time"))
+  $('#routines_page').append("<br>")
+  $('#routines_page').append("<br>")
+  $('#routines_page').append("Tasks for this Routine: <br>")
 
-
-  $('#routines_page').append(sel)
-
-
+  
 
 
 
