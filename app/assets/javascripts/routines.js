@@ -125,7 +125,7 @@ function createRoutine(){
   let newTask = 0
 
   var imp = document.createElement("INPUT");
-  imp.type = 'TEXTFIELD'
+  imp.type = 'text'
   imp.id = newTask
   var lab = document.createElement("LABEL");
   lab.innerText = "Task name:"
@@ -145,7 +145,7 @@ function createRoutine(){
     var lab = document.createElement("LABEL");
     lab.innerText = "Task name:"
     var imp = document.createElement("INPUT");
-    imp.type = 'textfiled'
+    imp.type = 'text'
     imp.id = newTask
     lab.appendChild(imp)
     xi.appendChild(lab)
@@ -166,6 +166,57 @@ function createRoutine(){
   })
 }
 
+
+class Task {
+  constructor(name){
+    this.name = name
+  }
+}
+
+
+
+class Routine {
+  constructor(name, start_time, end_time) {
+    this.name = name;
+    this.start_time = start_time;
+    this.end_time = end_time;
+  }
+
+  assignTasks() {
+    let ar = []
+    for (i=0; i<$("#existing_tasks input:checkbox").length; i++){
+      if ($("#existing_tasks input:checkbox")[i].checked){
+        ar.push($("#existing_tasks input:checkbox")[i].value)
+      }
+    }
+    this.task_ids= ar
+
+
+    let tks={}
+
+    for(i=0; i<$("#new_tasks input:text").length; i++){
+      if ($("#new_tasks input:text")[i].value != ""){
+        tks[i]=$("#new_tasks input:text")[i].value
+      }
+
+    }
+
+    this.tasks = tks
+  }
+
+  postMe() {
+    debugger
+  }
+}
+
+
+
 function createNewRoutine(){
-  debugger
+  let name = $('#routine_name')[0].value
+  let start_time = $('#start_time')[0].value
+  let end_time = $('#end_time')[0].value
+  let newRoutine = new Routine(name, start_time, end_time)
+  newRoutine.assignTasks()
+  newRoutine.postMe()
+
 }
