@@ -64,14 +64,12 @@ function showRoutine(result){
 
    div.append(ul)
    $('#routines_page').append(div)
-   $('#routines_page').append(`<a id="${result[i].id}" href="">delete this routine</a>`)
+   $('#routines_page').append(`<a id="${result.id}" href="">delete this routine</a>`)
    $('#routines_page').append("<br>")
    $('#routines_page').append("<br>")
    $(`#${result[i].id}`)[0].addEventListener("click", function(e){
      deleteRoutine(e.currentTarget.id)
    })
-   backtoMainScreenButton()
-
 }
 
 
