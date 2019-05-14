@@ -70,6 +70,7 @@ function showRoutine(result){
    $(`#${result[i].id}`)[0].addEventListener("click", function(e){
      deleteRoutine(e.currentTarget.id)
    })
+   backtoMainScreenButton()
 
 }
 
