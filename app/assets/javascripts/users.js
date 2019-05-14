@@ -57,8 +57,12 @@ function appendCurrentRoutines(result) {
   if(result.length === 0){
     $("#current_routine").append(
       `You do not have a routine that is applicable at the current time <br>
-       <a href="" id='create_a_routine'> create one!</a> `
+       <a href="" id='make_a_routine'> create one!</a> `
     )
+    $('#make_a_routine')[0].addEventListener('click', function(e){
+         e.preventDefault();
+         createRoutine()
+    })
   }else{
 
     for(i=0; i<result.length; i++){
@@ -71,7 +75,6 @@ function appendCurrentRoutines(result) {
     }
   }
 }
-
 
 function userInfo() {
    let id = $('#user_id')[0].value

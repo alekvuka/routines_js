@@ -39,10 +39,10 @@ function createTimeOptions(j){
 }
 
 function deleteRoutine(rid){
-
+  $.get(`/delete_routine/${rid}`, function(result){
+    getAllRoutines()
+  })
 }
-
-
 
 
 
@@ -64,11 +64,11 @@ function showRoutine(result){
 
    div.append(ul)
    $('#routines_page').append(div)
-   $('#routines_page').append(`<a id="${result[i].id}" href="">edit this routine</a>`)
+   $('#routines_page').append(`<a id="${result[i].id}" href="">delete this routine</a>`)
    $('#routines_page').append("<br>")
    $('#routines_page').append("<br>")
    $(`#${result[i].id}`)[0].addEventListener("click", function(e){
-     editRoutine(e.currentTarget.id)
+     deleteRoutine(e.currentTarget.id)
    })
 
 }
@@ -93,12 +93,13 @@ function showAllRoutines(result){
      }
 
      div.append(ul)
+
      $('#routines_page').append(div)
-     $('#routines_page').append(`<a id="${result[i].id}" href="">edit this routine</a>`)
+     $('#routines_page').append(`<a id="${result[i].id}" href="">delete this routine</a>`)
      $('#routines_page').append("<br>")
      $('#routines_page').append("<br>")
      $(`#${result[i].id}`)[0].addEventListener("click", function(e){
-       editRoutine(e.currentTarget.id)
+       deleteRoutine(e.currentTarget.id)
      })
 
   }

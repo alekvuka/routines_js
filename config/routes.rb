@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/all_tasks', to: 'tasks#all_tasks'
 
   post '/routine', to: 'routines#create'
+  get '/delete_routine/:id', to: 'routines#destroy_routine'
 
   resources :tasks, only: [:index, :show]
   resources :routines, only: [:index, :show]

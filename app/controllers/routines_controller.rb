@@ -8,6 +8,10 @@ class RoutinesController < ApplicationController
     @routine = Routine.new
   end
 
+  def destroy_routine
+    Routine.find(params[:id]).delete
+  end
+
 
   def create
     convert_time_input_to_24hour
@@ -42,6 +46,7 @@ class RoutinesController < ApplicationController
     @routine = Routine.find(params[:id])
     render json: @routine
   end
+
 
   def destroy
     if current_user == User.find(params[:user_id]) && Routine.find_by_id(params[:id]).originator_id ==  current_user.id
