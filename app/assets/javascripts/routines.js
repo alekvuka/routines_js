@@ -38,8 +38,8 @@ function createTimeOptions(j){
 
 }
 
-function updateRoutine(rid){
-  debugger 
+function deleteRoutine(rid){
+
 }
 
 
@@ -51,7 +51,6 @@ function updateRoutine(rid){
 function showRoutine(result){
    clearPage()
 
-   //debugger
 
    var div=document.createElement('div')
    div.innerHTML = `<b>${result.name} (${result.start_time} - ${result.end_time})</b>`

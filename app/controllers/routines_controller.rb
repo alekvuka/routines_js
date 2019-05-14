@@ -40,6 +40,7 @@ class RoutinesController < ApplicationController
 
   def show
     @routine = Routine.find(params[:id])
+    render json: @routine
   end
 
   def destroy
