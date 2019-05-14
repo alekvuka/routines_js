@@ -20,7 +20,9 @@ class RoutinesController < ApplicationController
     @routine.originator_id = params[:user]
     @routine.users << User.find_by_id(params[:user])
     add_existing_tasks
-    @routine.add_new_tasks(params[:routine][:tasks])
+    if params[:routine][:tasks] != nil
+     @routine.add_new_tasks(params[:routine][:tasks])
+    end
     @routine.save
     render json: @routine
   end
