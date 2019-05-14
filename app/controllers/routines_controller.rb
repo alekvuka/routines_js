@@ -65,12 +65,13 @@ class RoutinesController < ApplicationController
 
   def add_existing_tasks
 
-    if !params[:routine][:task_ids].reject(&:empty?).empty?
-        params[:routine][:task_ids].reject(&:empty?).each do |task_id|
-          #binding.pry
-          @routine.tasks << Task.find_by_id(task_id)
-        end
-    end
+    if  params[:routine][:task_ids] != nil
+      if !params[:routine][:task_ids].reject(&:empty?).empty?
+          params[:routine][:task_ids].reject(&:empty?).each do |task_id|
+            @routine.tasks << Task.find_by_id(task_id)
+          end
+      end
+   end
   end
 
   def set_priority
