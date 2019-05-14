@@ -23,12 +23,6 @@ class UsersController < ApplicationController
 
 
 
-
-
-
-
-
-
   def add_routine
     current_user.routines << Routine.find(params[:user_id])
     current_user.save

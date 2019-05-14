@@ -8,17 +8,17 @@ class RoutinesController < ApplicationController
     @routine = Routine.new
   end
 
+
   def create
     convert_time_input_to_24hour
+    params[:user]
     @routine = Routine.create(routine_params)
-    @routine.originator_id = current_user.id
-    @routine.users << current_user
-    set_priority
+    @routine.originator_id = params[:user]
+    @routine.users << User.find_by_id(params[:user])
     add_existing_tasks
-    @routine.add_new_tasks(params[:task])
+    @routine.add_new_tasks(params[:routine][:tasks])
     @routine.save
-
-    redirect_to user_path(current_user)
+    render json: @routine
   end
 
   def edit
@@ -58,8 +58,10 @@ class RoutinesController < ApplicationController
   private
 
   def add_existing_tasks
+
     if !params[:routine][:task_ids].reject(&:empty?).empty?
         params[:routine][:task_ids].reject(&:empty?).each do |task_id|
+          #binding.pry
           @routine.tasks << Task.find_by_id(task_id)
         end
     end

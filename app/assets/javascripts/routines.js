@@ -38,6 +38,45 @@ function createTimeOptions(j){
 
 }
 
+function updateRoutine(rid){
+  debugger 
+}
+
+
+
+
+
+
+
+function showRoutine(result){
+   clearPage()
+
+   //debugger
+
+   var div=document.createElement('div')
+   div.innerHTML = `<b>${result.name} (${result.start_time} - ${result.end_time})</b>`
+
+   var ul = document.createElement('ul');
+   for(j=0; j<result.tasks.length; j++) {
+     var li=document.createElement('li')
+      li.innerHTML = `${result.tasks[j].name}`
+     ul.appendChild(li)
+   }
+
+   div.append(ul)
+   $('#routines_page').append(div)
+   $('#routines_page').append(`<a id="${result[i].id}" href="">edit this routine</a>`)
+   $('#routines_page').append("<br>")
+   $('#routines_page').append("<br>")
+   $(`#${result[i].id}`)[0].addEventListener("click", function(e){
+     editRoutine(e.currentTarget.id)
+   })
+
+}
+
+
+
+
 function showAllRoutines(result){
   clearPage()
 
@@ -45,7 +84,6 @@ function showAllRoutines(result){
 
   for(i=0; i<result.length; i++){
      var div=document.createElement('div')
-     div.id = `${result[i].id}`
      div.innerHTML = `<b>${result[i].name} (${result[i].start_time} - ${result[i].end_time})</b>`
 
      var ul = document.createElement('ul');
@@ -57,10 +95,12 @@ function showAllRoutines(result){
 
      div.append(ul)
      $('#routines_page').append(div)
-
-     $('#routines_page').append(`<a href="/users/${$('#user_id')[0].value}/routines/${result[i].id}/edit" id='see_all_routines'>edit this routine</a>`)
+     $('#routines_page').append(`<a id="${result[i].id}" href="">edit this routine</a>`)
      $('#routines_page').append("<br>")
      $('#routines_page').append("<br>")
+     $(`#${result[i].id}`)[0].addEventListener("click", function(e){
+       editRoutine(e.currentTarget.id)
+     })
 
   }
 
@@ -167,14 +207,6 @@ function createRoutine(){
 }
 
 
-class Task {
-  constructor(name){
-    this.name = name
-  }
-}
-
-
-
 class Routine {
   constructor(name, start_time, end_time) {
     this.name = name;
@@ -205,10 +237,16 @@ class Routine {
   }
 
   postMe() {
-    debugger
+
+    let rt2 = {}
+    rt2["routine"] = this
+    rt2["user"] = $('#user_id')[0].value
+
+    $.post('/routine', rt2, function(data, status){
+      showRoutine(data)
+    })
   }
 }
-
 
 
 function createNewRoutine(){

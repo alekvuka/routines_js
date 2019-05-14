@@ -3,13 +3,15 @@ Rails.application.routes.draw do
 
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
-  get '/auth/google_oauth2/callback' => 'sessions#create_with_google'
+  #get '/auth/google_oauth2/callback' => 'sessions#create_with_google'
 
   get '/get_user/:id', to: 'users#get_user'
   get '/get_current_routines/:id', to: 'users#current_routines'
   get '/get_upcoming_routines/:id', to: 'users#upcoming_routines'
   get '/get_routines/:id', to: 'users#get_routines'
   get '/all_tasks', to: 'tasks#all_tasks'
+
+  post '/routine', to: 'routines#create'
 
   resources :tasks, only: [:index, :show]
   resources :routines, only: [:index, :show]
