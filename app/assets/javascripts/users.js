@@ -1,13 +1,15 @@
 
 const maybePluralize = (count, noun, suffix = 's') =>`${count} ${noun}${count !== 1 ? suffix : ''}`;
 
+let numberOfRoutines
+let userName
 
 function appendUserInfo(result){
-  let numberOfRoutines = result.routines.length
-  let name = result.name
+  numberOfRoutines = result.routines.length
+  userName = result.name
 
   $('#user_info').append(
-    `<h1>Hello, ${name}! </h1>
+    `<h1>Hello, ${userName}! </h1>
      You have a total of ${maybePluralize(numberOfRoutines, 'routine')} today.
      <br>
      <br>
@@ -32,8 +34,6 @@ function clearPage() {
   $("#upcoming_routine").empty()
   $('#routines_page').empty()
 }
-
-
 
 function appendUpcomingRoutines(result){
 
