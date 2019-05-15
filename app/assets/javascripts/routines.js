@@ -13,7 +13,6 @@ function backtoMainScreenButton(){
        currentRoutines()
        upcomingRoutines()
   })
-
 }
 
 
@@ -43,10 +42,6 @@ function deleteRoutine(rid){
     getAllRoutines()
   })
 }
-
-
-
-
 
 function showRoutine(result){
    clearPage()
