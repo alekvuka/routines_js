@@ -7,15 +7,23 @@ let start_time
 let end_time
 let newRoutine
 
+//backtoMainScreenButton() variables
+let backButton
+
+//createTimeOptions() variables
+let times
+let select
+let options
+
 
 
 function backtoMainScreenButton(){
-  var button = document.createElement("button")
-  button.innerHTML = "Back to Main Screen"
-  button.id = 'back_to_main_screen'
+  backButton = document.createElement("button")
+  backButton.innerHTML = "Back to Main Screen"
+  backButton.id = 'back_to_main_screen'
 
 
-  $('#routines_page').append(button)
+  $('#routines_page').append(backButton)
   $('#back_to_main_screen')[0].addEventListener('click', function(e){
        e.preventDefault();
        clearPage()
@@ -28,21 +36,21 @@ function backtoMainScreenButton(){
 
 function createTimeOptions(j){
 
-  let times =   ['1:00am', '2:00am', '3:00am', '4:00am', '5:00am','6:00am',
+  let times =  ['1:00am', '2:00am', '3:00am', '4:00am', '5:00am','6:00am',
       '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm',
       '1:00pm', '2:00pm', '3:00pm', '4:00pm','5:00pm','6:00pm',
       '7:00pm', '8:00pm', '9:00pm', '10:00pm', '11:00pm', '12:00am' ]
 
 
-  var sel = document.createElement("SELECT")
-  sel.id = j
+  select = document.createElement("SELECT")
+  select.id = j
   for(i=0; i<times.length; i++){
-    var opt = document.createElement("OPTION")
-    opt.value = times[i]
-    opt.innerText = times[i]
-    sel.appendChild(opt)
+    options = document.createElement("OPTION")
+    options.value = times[i]
+    options.innerText = times[i]
+    select.appendChild(options)
   }
-  return sel
+  return select
 }
 
 function deleteRoutine(rid){
