@@ -2,7 +2,7 @@ class RoutinesController < ApplicationController
 
   def destroy_routine
     Routine.find(params[:id]).delete
-    render json: {status: 201}.to_json
+    render json: {status: 200}.to_json
   end
 
   def create

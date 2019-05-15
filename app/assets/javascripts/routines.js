@@ -1,9 +1,19 @@
+//user identifier
+let id
+
+//createNewRoutine variables
+let name
+let start_time
+let end_time
+let newRoutine
+
 
 
 function backtoMainScreenButton(){
-  var button = document. createElement("button")
+  var button = document.createElement("button")
   button.innerHTML = "Back to Main Screen"
   button.id = 'back_to_main_screen'
+
 
   $('#routines_page').append(button)
   $('#back_to_main_screen')[0].addEventListener('click', function(e){
@@ -32,9 +42,7 @@ function createTimeOptions(j){
     opt.innerText = times[i]
     sel.appendChild(opt)
   }
-
   return sel
-
 }
 
 function deleteRoutine(rid){
@@ -67,6 +75,8 @@ function showRoutine(result){
 function showAllRoutines(result){
   clearPage()
 
+  //debugger
+
   $('#routines_page').append("<h1>Here are all of your Routines!</h1>")
 
   for(i=0; i<result.length; i++){
@@ -96,7 +106,7 @@ function showAllRoutines(result){
 }
 
 function getAllRoutines(){
-  let id = $('#user_id')[0].value
+    id = $('#user_id')[0].value
   $.getJSON("/get_routines/" + id, function(result){
     showAllRoutines(result)
   })
@@ -238,11 +248,10 @@ class Routine {
 
 
 function createNewRoutine(){
-  let name = $('#routine_name')[0].value
-  let start_time = $('#start_time')[0].value
-  let end_time = $('#end_time')[0].value
-  let newRoutine = new Routine(name, start_time, end_time)
+  name = $('#routine_name')[0].value
+  start_time = $('#start_time')[0].value
+  end_time = $('#end_time')[0].value
+  newRoutine = new Routine(name, start_time, end_time)
   newRoutine.assignTasks()
   newRoutine.postMe()
-
 }
