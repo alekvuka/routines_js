@@ -1,17 +1,9 @@
 class RoutinesController < ApplicationController
 
-  def index
-  end
-
-  def new
-    @user = User.find(params[:user_id])
-    @routine = Routine.new
-  end
-
   def destroy_routine
     Routine.find(params[:id]).delete
+    render json: {status: 201}.to_json
   end
-
 
   def create
     convert_time_input_to_24hour
@@ -27,22 +19,6 @@ class RoutinesController < ApplicationController
     render json: @routine
   end
 
-  def edit
-    @routine = Routine.find(params[:id])
-  end
-
-  def update
-    convert_time_input_to_24hour
-    @routine = Routine.find(params[:id])
-    @routine.update(routine_params)
-    set_priority
-    @routine.tasks.clear
-    add_existing_tasks
-    @routine.add_new_tasks(params[:task])
-    @routine.save
-
-    redirect_to user_path(current_user)
-  end
 
   def show
     @routine = Routine.find(params[:id])
@@ -50,14 +26,14 @@ class RoutinesController < ApplicationController
   end
 
 
-  def destroy
-    if current_user == User.find(params[:user_id]) && Routine.find_by_id(params[:id]).originator_id ==  current_user.id
-      Routine.find(params[:id]).delete
-      redirect_to user_path(current_user)
-    else
-      redirect_to logout_path
-    end
-  end
+  #def destroy
+  #  if current_user == User.find(params[:user_id]) && Routine.find_by_id(params[:id]).originator_id ==  current_user.id
+  #    Routine.find(params[:id]).delete
+  #    redirect_to user_path(current_user)
+  #  else
+  #    redirect_to logout_path
+  #  end
+  #end
 
   def routine_params
     params.require(:routine).permit(:name, :start_time, :end_time, :originator_id, :task_ids)
