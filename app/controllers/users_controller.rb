@@ -27,6 +27,10 @@ class UsersController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def show
+    @user = current_user
+  end
+
   def create
     @user = User.create(user_params)
     if @user.valid? != true
