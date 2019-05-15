@@ -17,6 +17,17 @@ let options
 
 
 
+
+const timeOptions =  ['1:00am', '2:00am', '3:00am', '4:00am', '5:00am','6:00am',
+    '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm',
+    '1:00pm', '2:00pm', '3:00pm', '4:00pm','5:00pm','6:00pm',
+    '7:00pm', '8:00pm', '9:00pm', '10:00pm', '11:00pm', '12:00am' ]
+
+
+
+
+
+
 function backtoMainScreenButton(){
   backButton = document.createElement("button")
   backButton.innerHTML = "Back to Main Screen"
@@ -36,18 +47,12 @@ function backtoMainScreenButton(){
 
 function createTimeOptions(j){
 
-  let times =  ['1:00am', '2:00am', '3:00am', '4:00am', '5:00am','6:00am',
-      '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm',
-      '1:00pm', '2:00pm', '3:00pm', '4:00pm','5:00pm','6:00pm',
-      '7:00pm', '8:00pm', '9:00pm', '10:00pm', '11:00pm', '12:00am' ]
-
-
   select = document.createElement("SELECT")
   select.id = j
-  for(i=0; i<times.length; i++){
+  for(i=0; i<timeOptions.length; i++){
     options = document.createElement("OPTION")
-    options.value = times[i]
-    options.innerText = times[i]
+    options.value = timeOptions[i]
+    options.innerText = timeOptions[i]
     select.appendChild(options)
   }
   return select
