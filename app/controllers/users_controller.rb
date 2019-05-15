@@ -21,8 +21,6 @@ class UsersController < ApplicationController
     render json: @routines
   end
 
-
-
   def add_routine
     current_user.routines << Routine.find(params[:user_id])
     current_user.save
@@ -30,28 +28,23 @@ class UsersController < ApplicationController
   end
 
 
-  def show
-    @user = current_user
-  end
+#  def show
+#    @user = current_user
+#  end
 
+#  def routines
+#    @routines = Routine.order_my_routines(current_user)
+#    render 'routines/index'
+#  end
 
+#  def tasks
+#    @tasks = current_user.tasks.uniq
+#    render 'tasks/index'
+#  end
 
-
-
-
-  def routines
-    @routines = Routine.order_my_routines(current_user)
-    render 'routines/index'
-  end
-
-  def tasks
-    @tasks = current_user.tasks.uniq
-    render 'tasks/index'
-  end
-
-  def new
-    @user = User.new
-  end
+#  def new
+#    @user = User.new
+#  end
 
   def create
     @user = User.create(user_params)
