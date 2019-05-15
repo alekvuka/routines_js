@@ -15,6 +15,17 @@ let times
 let select
 let options
 
+//showRoutine() variables
+let rDiv
+let rUl
+let rLi
+
+//showAllRoutines variables
+let rsDiv
+let rsUl
+let rsLi
+
+
 
 
 
@@ -22,9 +33,6 @@ const timeOptions =  ['1:00am', '2:00am', '3:00am', '4:00am', '5:00am','6:00am',
     '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm',
     '1:00pm', '2:00pm', '3:00pm', '4:00pm','5:00pm','6:00pm',
     '7:00pm', '8:00pm', '9:00pm', '10:00pm', '11:00pm', '12:00am' ]
-
-
-
 
 
 
@@ -67,18 +75,18 @@ function deleteRoutine(rid){
 function showRoutine(result){
    clearPage()
 
-   var div=document.createElement('div')
-   div.innerHTML = `<b>${result.name} (${result.start_time} - ${result.end_time})</b>`
+   rDiv=document.createElement('div')
+   rDiv.innerHTML = `<b>${result.name} (${result.start_time} - ${result.end_time})</b>`
 
-   var ul = document.createElement('ul');
+   rUl = document.createElement('ul');
    for(j=0; j<result.tasks.length; j++) {
-     var li=document.createElement('li')
-      li.innerHTML = `${result.tasks[j].name}`
-     ul.appendChild(li)
+      rLi=document.createElement('li')
+      rLi.innerHTML = `${result.tasks[j].name}`
+     rUl.appendChild(rLi)
    }
 
-   div.append(ul)
-   $('#routines_page').append(div)
+   rDiv.append(rUl)
+   $('#routines_page').append(rDiv)
    $('#routines_page').append("<br>")
    $('#routines_page').append("<br>")
    backtoMainScreenButton()
@@ -88,24 +96,22 @@ function showRoutine(result){
 function showAllRoutines(result){
   clearPage()
 
-  //debugger
-
   $('#routines_page').append("<h1>Here are all of your Routines!</h1>")
 
   for(i=0; i<result.length; i++){
-     var div=document.createElement('div')
-     div.innerHTML = `<b>${result[i].name} (${result[i].start_time} - ${result[i].end_time})</b>`
+     rsDiv=document.createElement('div')
+     rsDiv.innerHTML = `<b>${result[i].name} (${result[i].start_time} - ${result[i].end_time})</b>`
 
-     var ul = document.createElement('ul');
+     rsUl = document.createElement('ul');
      for(j=0; j<result[i].tasks.length; j++) {
-       var li=document.createElement('li')
-        li.innerHTML = `${result[i].tasks[j].name}`
-       ul.appendChild(li)
+       rsLi=document.createElement('li')
+       rsLi.innerHTML = `${result[i].tasks[j].name}`
+       rsUl.appendChild(rsLi)
      }
 
-     div.append(ul)
+     rsDiv.append(rsUl)
 
-     $('#routines_page').append(div)
+     $('#routines_page').append(rsDiv)
      $('#routines_page').append(`<a id="${result[i].id}" href="">delete this routine</a>`)
      $('#routines_page').append("<br>")
      $('#routines_page').append("<br>")
@@ -119,7 +125,7 @@ function showAllRoutines(result){
 }
 
 function getAllRoutines(){
-    id = $('#user_id')[0].value
+  id = $('#user_id')[0].value
   $.getJSON("/get_routines/" + id, function(result){
     showAllRoutines(result)
   })
