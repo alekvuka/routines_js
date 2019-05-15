@@ -77,21 +77,21 @@ function appendCurrentRoutines(result) {
 }
 
 function userInfo() {
-   let id = $('#user_id')[0].value
+   id = $('#user_id')[0].value
    $.getJSON("/get_user/" + id, function(result){
      appendUserInfo(result)
    })
 }
 
 function currentRoutines() {
-  let id = $('#user_id')[0].value
+  id = $('#user_id')[0].value
   $.getJSON("/get_current_routines/" + id, function(result){
     appendCurrentRoutines(result)
   })
 }
 
 function upcomingRoutines() {
-  let id = $('#user_id')[0].value
+  id = $('#user_id')[0].value
   $.getJSON("/get_upcoming_routines/" + id, function(result){
     appendUpcomingRoutines(result)
   })
